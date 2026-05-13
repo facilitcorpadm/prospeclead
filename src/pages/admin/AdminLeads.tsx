@@ -33,7 +33,8 @@ import {
   MoreHorizontal,
   Sparkles,
   BadgeDollarSign,
-  Download
+  Download,
+  Eye
 } from "lucide-react";
 import { recognizePlateFromImage } from "@/lib/ocr";
 import { LeadCommissionDetails } from "@/components/admin/LeadCommissionDetails";
@@ -57,6 +58,8 @@ export default function AdminLeads() {
   const [loading, setLoading] = useState(true);
   const [recognizingId, setRecognizingId] = useState<string | null>(null);
   const [commissionLead, setCommissionLead] = useState<any | null>(null);
+  const [viewLead, setViewLead] = useState<any | null>(null);
+  const [showEspelhoFoto, setShowEspelhoFoto] = useState(false);
   const [search, setSearch] = useState("");
   const [filterPraca, setFilterPraca] = useState("all");
   const [filterMedo, setFilterMedo] = useState("all");
@@ -214,6 +217,15 @@ export default function AdminLeads() {
     return phone;
   };
 
+  const formatPlate = (plate: string) => {
+    if (!plate) return plate;
+    const cleaned = plate.replace(/[^a-zA-Z0-9]/g, "").toUpperCase();
+    if (cleaned.length === 7) {
+      return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    }
+    return plate;
+  };
+
   const exportToExcel = async () => {
     try {
       const XLSX = await import("xlsx");
@@ -358,7 +370,7 @@ export default function AdminLeads() {
                         </div>
                         <div className="flex items-center gap-1 mt-1">
                           <span className="text-[10px] font-mono bg-muted px-1.5 py-0.5 rounded w-fit text-muted-foreground border">
-                            {l.vehicle_plate || l.placa || l.plate || "SEM PLACA"}
+                            {formatPlate(l.vehicle_plate || l.placa || l.plate || "") || "SEM PLACA"}
                           </span>
                           {(!l.vehicle_plate && !l.placa && !l.plate && l.signed_url) && (
                             <button 
@@ -469,6 +481,10 @@ export default function AdminLeads() {
                               <Edit className="mr-2 h-4 w-4" /> Editar Lead
                             </DropdownMenuItem>
                           )}
+                          <DropdownMenuItem className="cursor-pointer" onClick={() => setViewLead(l)}>
+                            <Eye className="w-4 h-4 mr-2" />
+                            <span>Ver Espelho Lead</span>
+                          </DropdownMenuItem>
                           <DropdownMenuItem className="cursor-pointer" onClick={() => setCommissionLead(l)}>
                             <BadgeDollarSign className="w-4 h-4 mr-2" />
                             <span>Extrato Financeiro</span>
@@ -498,6 +514,79 @@ export default function AdminLeads() {
         onClose={() => setCommissionLead(null)} 
         onUpdate={loadLeads} 
       />
+
+      <Dialog open={!!viewLead} onOpenChange={(open) => {
+        if (!open) {
+          setViewLead(null);
+          setShowEspelhoFoto(false);
+        }
+      }}>
+        <DialogContent className="max-w-md">
+          {viewLead && (
+            <div className="space-y-4">
+              <div>
+                <h2 className="text-lg font-bold">Espelho do Lead</h2>
+                <p className="text-sm text-muted-foreground">Visualização detalhada dos dados captados.</p>
+              </div>
+              <div className="grid gap-3 text-sm">
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Nome:</span>
+                  <span className="col-span-2">{viewLead.nome || viewLead.name || "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Telefone:</span>
+                  <span className="col-span-2">{viewLead.phone ? formatPhone(viewLead.phone) : "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Profissão:</span>
+                  <span className="col-span-2">{viewLead.profession || viewLead.profissao || "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Veículo:</span>
+                  <span className="col-span-2">{viewLead.vehicle_model || viewLead.veiculo || viewLead.vehicle || "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Placa:</span>
+                  <span className="col-span-2 font-mono">{formatPlate(viewLead.vehicle_plate || viewLead.placa || viewLead.plate || "") || "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Praça:</span>
+                  <span className="col-span-2">{viewLead.city || viewLead.location || viewLead.praca || "—"}</span>
+                </div>
+                <div className="grid grid-cols-3 gap-2 border-b pb-2">
+                  <span className="font-semibold text-muted-foreground">Medo:</span>
+                  <span className="col-span-2">
+                    <span className="text-xs font-semibold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                      {viewLead.pain || viewLead.pain_point || viewLead.medo || "—"}
+                    </span>
+                  </span>
+                </div>
+              </div>
+              {viewLead.signed_url && (
+                <div className="mt-4 pt-4 border-t border-dashed">
+                  <Button 
+                    variant="outline" 
+                    className="w-full text-sm font-semibold"
+                    onClick={() => setShowEspelhoFoto(!showEspelhoFoto)}
+                  >
+                    {showEspelhoFoto ? "Fechar Foto" : "Ver Foto"}
+                  </Button>
+                  
+                  {showEspelhoFoto && (
+                    <div className="mt-4 flex justify-center bg-muted/20 p-2 rounded-lg border">
+                      <img 
+                        src={viewLead.signed_url} 
+                        alt="Evidência" 
+                        className="w-full max-h-[300px] object-contain rounded-md" 
+                      />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
