@@ -1,0 +1,66 @@
+{
+  "mcpServers": {
+    "prospectlead": {
+      "url": "http://localhost:54321",
+      "database": "prospeclead",
+      "projectRef": "prospectlead-c6066d18",
+      "tables": [
+        "users",
+        "leads", 
+        "wallet_entries",
+        "checkins",
+        "promoter_products",
+        "products",
+        "saques",
+        "kyc_documents",
+        "leads_pdv",
+        "missions",
+        "agenda_events"
+      ],
+      "rules": {
+        "never_delete_columns": true,
+        "never_delete_tables": true,
+        "always_use_migration": true,
+        "preserve_rls": true
+      }
+    }
+  },
+  "project": {
+    "name": "ProspecLead",
+    "full_name": "Sistema ProspecLead - Gestão de Promoters e Leads",
+    "tech_stack": {
+      "frontend": "React + TypeScript + Vite + TailwindCSS",
+      "ui_library": "shadcn/ui + Radix UI",
+      "backend": "Supabase (PostgreSQL + Edge Functions)",
+      "icons": "lucide-react"
+    },
+    "features": [
+      "Gestão de Leads",
+      "Check-in de Prospecção",
+      "Carteira de Comissão",
+      "Rede PDV",
+      "Dashboard Admin",
+      "Gestão RH",
+      "Kanban de Tarefas"
+    ],
+    "roles": [
+      "promoter",
+      "admin", 
+      "rh",
+      "visualizador"
+    ]
+  },
+  "naming_conventions": {
+    "pages": "PascalCase (AdminDashboard.tsx)",
+    "hooks": "camelCase com prefixo use (useAuth.tsx)",
+    "components": "PascalCase",
+    "utils": "camelCase",
+    "files": "kebab-case"
+  },
+  "safe_commands": {
+    "dev": "npm run dev",
+    "build": "npm run build",
+    "lint": "npm run lint",
+    "test": "npm run test"
+  }
+}

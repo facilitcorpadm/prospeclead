@@ -1,0 +1,22 @@
+project_id = "xmeuxjdkkocxbldzbshh"
+
+[functions.admin-signup]
+verify_jwt = false
+
+[functions.rh-bootstrap]
+verify_jwt = false
+
+[functions.rh-signup]
+verify_jwt = false
+
+[functions.confirm-pending-users]
+verify_jwt = false
+
+[functions.process-email-queue]
+verify_jwt = true
+
+[functions.google-places]
+verify_jwt = true
+
+[functions.whatsapp-handler]
+verify_jwt = false

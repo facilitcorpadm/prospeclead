@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 15%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 262 83% 96%;
+    --accent-foreground: 262 83% 30%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 95 85% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --brand-blue: 217 91% 60%;
+    --bronze: 30 60% 45%;
+    --silver: 0 0% 75%;
+    --gold: 48 100% 50%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 262 83% 58%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 6%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 262 83% 65%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 6% 14%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 6% 14%;
+    --muted-foreground: 240 5% 65%;
+    --accent: 262 50% 20%;
+    --accent-foreground: 262 83% 90%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 95 85% 50%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 55%;
+    --warning-foreground: 0 0% 10%;
+    --brand-blue: 217 91% 65%;
+    --bronze: 30 60% 50%;
+    --silver: 0 0% 75%;
+    --gold: 48 100% 55%;
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: 262 83% 65%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer utilities {
+  .bg-gradient-promoter {
+    background-image: linear-gradient(135deg, hsl(150 55% 35%), hsl(145 60% 45%), hsl(155 50% 55%));
+  }
+  .bg-gradient-prospeclead {
+    background-image: linear-gradient(135deg, hsl(95 85% 45%), hsl(100 80% 38%), hsl(140 90% 22%));
+  }
+  .bg-gradient-b2b {
+    background-image: linear-gradient(135deg, hsl(217 91% 50%), hsl(220 91% 35%), hsl(225 91% 22%));
+  }
+  .bg-gradient-leads-blue {
+    background-image: linear-gradient(135deg, hsl(230 70% 30%), hsl(240 75% 25%), hsl(250 75% 22%));
+  }
+  .bg-gradient-wallet {
+    background-image: linear-gradient(135deg, hsl(24 95% 55%), hsl(38 92% 55%), hsl(48 100% 55%));
+  }
+  .bg-gradient-wallet-dark {
+    background-image: linear-gradient(135deg, hsl(35 60% 25%), hsl(38 70% 30%), hsl(40 75% 25%));
+  }
+  .bg-gradient-gas {
+    background-image: linear-gradient(135deg, hsl(0 84% 55%), hsl(345 84% 55%), hsl(330 84% 60%));
+  }
+  .bg-gradient-gas-green {
+    background-image: linear-gradient(135deg, hsl(140 50% 25%), hsl(150 55% 30%), hsl(155 50% 28%));
+  }
+  .bg-gradient-leads {
+    background-image: linear-gradient(135deg, hsl(160 84% 45%), hsl(175 84% 42%), hsl(190 84% 45%));
+  }
+  .bg-gradient-pdv {
+    background-image: linear-gradient(135deg, hsl(142 70% 50%), hsl(160 70% 42%));
+  }
+  .bg-gradient-pdv-light {
+    background-image: linear-gradient(135deg, hsl(140 60% 95%), hsl(150 60% 92%));
+  }
+  .bg-gradient-support {
+    background-image: linear-gradient(135deg, hsl(217 91% 55%), hsl(220 91% 45%), hsl(225 91% 38%));
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 1.2s ease-in-out infinite;
+}

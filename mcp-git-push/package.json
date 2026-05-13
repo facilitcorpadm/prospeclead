@@ -1,0 +1,16 @@
+{
+  "name": "mcp-git-push",
+  "version": "1.0.0",
+  "description": "MCP Server para commit e push automático para GitHub/Lovable",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "mcp-git-push": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
