@@ -198,10 +198,19 @@ export default function AdminLeads() {
   const medos = Array.from(new Set(leads.map(l => l.medo || l.pain).filter(Boolean)));
 
   const formatPhone = (phone: string) => {
-    const cleaned = phone.replace(/\D/g, "");
-    if (cleaned.length === 11) {
-      return `(${cleaned.slice(2, 4)}) ${cleaned.slice(4, 9)}-${cleaned.slice(9)}`;
+    if (!phone) return phone;
+    let cleaned = phone.replace(/\D/g, "");
+    
+    if (cleaned.startsWith("55") && (cleaned.length === 13 || cleaned.length === 12)) {
+      cleaned = cleaned.slice(2);
     }
+
+    if (cleaned.length === 11) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 7)}-${cleaned.slice(7)}`;
+    } else if (cleaned.length === 10) {
+      return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2, 6)}-${cleaned.slice(6)}`;
+    }
+    
     return phone;
   };
 
