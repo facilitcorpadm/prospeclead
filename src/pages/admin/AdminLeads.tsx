@@ -299,6 +299,7 @@ export default function AdminLeads() {
             <TableRow>
               <TableHead className="font-bold">Cliente</TableHead>
               <TableHead className="font-bold">Veículo</TableHead>
+              <TableHead className="font-bold">Profissão</TableHead>
               <TableHead className="font-bold">Praça</TableHead>
               <TableHead className="font-bold">Medo</TableHead>
               <TableHead className="font-bold">Evidência</TableHead>
@@ -309,13 +310,13 @@ export default function AdminLeads() {
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={7} className="h-32 text-center">
+                <TableCell colSpan={8} className="h-32 text-center">
                   <Loader2 className="w-8 h-8 animate-spin mx-auto text-primary" />
                 </TableCell>
               </TableRow>
             ) : filteredLeads.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="h-32 text-center text-muted-foreground">
+                <TableCell colSpan={8} className="h-32 text-center text-muted-foreground">
                   Nenhum lead encontrado para os filtros selecionados.
                 </TableCell>
               </TableRow>
@@ -378,8 +379,18 @@ export default function AdminLeads() {
                       </div>
                     </TableCell>
 
+                    {/* Profissão */}
+                    <TableCell className="max-w-[130px]">
+                      <span 
+                        className="text-xs text-muted-foreground truncate block font-medium"
+                        title={l.profession || l.profissao || "Não informada"}
+                      >
+                        {l.profession || l.profissao || "—"}
+                      </span>
+                    </TableCell>
+
                     {/* Praça */}
-                    <TableCell className="max-w-[180px]">
+                    <TableCell className="max-w-[140px]">
                       <div className="flex items-center gap-1.5 group">
                         <span 
                           className="text-xs text-muted-foreground truncate block flex-1"
