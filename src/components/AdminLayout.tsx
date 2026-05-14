@@ -45,6 +45,7 @@ import {
   Percent,
   ShieldCheck,
   ListChecks,
+  ShoppingCart,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -114,6 +115,7 @@ const NAV_SECTIONS: {
     items: [
       { to: "/admin/leads", label: "Leads", icon: ContactRound },
       { to: "/admin/leads-pdv", label: "Leads PDV", icon: ContactRound },
+      { to: "/admin/venda-rapida", label: "Venda Rápida (PDV)", icon: ShoppingCart },
       { to: "/admin/fila-oportunidades", label: "Fila de Oportunidades", icon: ListChecks },
       { to: "/admin/pdvs", label: "Pontos de Venda", icon: Store },
     ],
@@ -139,6 +141,7 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/revisao-kyc": "Revisão KYC",
   "/admin/saques": "Saques PIX",
   "/admin/leads-pdv": "Leads PDV",
+  "/admin/venda-rapida": "Venda Rápida (PDV)",
   "/admin/fila-oportunidades": "Fila de Oportunidades",
   "/admin/pdvs": "Pontos de Venda",
   "/admin/leads": "Leads",

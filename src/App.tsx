@@ -46,6 +46,8 @@ import AdminComissoesKyc from "./pages/admin/AdminComissoesKyc";
 import AdminProdutos from "./pages/admin/AdminProdutos";
 import ProspectLeadEcosystem from "./pages/admin/ProspectLeadEcosystem";
 import FilaOportunidadesFinal from "./pages/admin/FilaOportunidadesFinal";
+import AdminRevisaoKyc from "./pages/admin/AdminRevisaoKyc";
+import PDV from "./pages/PDV";
 import RhLayout from "./components/RhLayout";
 import RhDashboard from "./pages/rh/RhDashboard";
 import RhPromoters from "./pages/rh/RhPromoters";
@@ -111,9 +113,10 @@ const App = () => (
                 <Route path="auditoria-fotos" element={<AdminAuditoriaFotos />} />
                 <Route path="comissoes-kyc" element={<AdminComissoesKyc />} />
                 <Route path="ecosystem" element={<ProspectLeadEcosystem />} />
-                <Route path="revisao-kyc" element={<AdminPlaceholder title="Revisão KYC" description="Fila de documentos KYC pendentes." />} />
+                <Route path="revisao-kyc" element={<AdminRevisaoKyc />} />
                 {/* Rede PDV */}
                 <Route path="leads-pdv" element={<AdminPlaceholder title="Leads PDV" description="Leads capturados via QR Code nos pontos de venda." />} />
+                <Route path="venda-rapida" element={<PDV />} />
                 <Route path="fila-oportunidades" element={<FilaOportunidadesFinal />} />
                 <Route path="pdvs" element={<AdminPlaceholder title="Pontos de Venda" description="Cadastro e gestão de PDVs ativos." />} />
               </Route>
